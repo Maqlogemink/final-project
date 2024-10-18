@@ -11,8 +11,8 @@
         <h1 class="text-2xl font-bold mb-4">Checkout</h1>
         <p>Produk: <?php echo $produk->nama; ?></p>
         <p>Harga: <?php echo $produk->harga; ?></p>
-        <form action="<?php echo base_url('Produk/lakukanPesanan'); ?>" method="post" class="mt-4">
-            <input type="hidden" name="pelanggan_id" value="<?php echo $this->session->userdata('pelanggan_id'); ?>">
+        <form action="<?php echo base_url('produk/lakukanPesanan'); ?>" method="post" class="mt-4">
+        <input type="hidden" name="pelanggan_id" value="<?php echo session()->get('pelanggan_id'); ?>">
             <input type="hidden" name="produk_id" value="<?php echo $produk->id; ?>">
             <div class="mb-4">
                 <label for="jumlah" class="block text-sm font-medium text-gray-700">Jumlah:</label>

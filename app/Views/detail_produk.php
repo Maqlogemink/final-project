@@ -6,8 +6,12 @@
 <body>
 <h1 class="text-2xl font-bold mb-4">Checkout</h1>
 
-<p class="text-lg">Produk: <?php echo $produk->nama; ?></p>
-<p class="text-lg">Harga: <?php echo $produk->harga; ?></p>
+<div class="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg">
+    <h1 class="text-2xl font-bold mb-4">Detail Produk</h1>
+    <p class="text-lg">Nama Produk: <?php echo $produk->nama; ?></p>
+    <p class="text-lg">Harga: Rp <?php echo number_format($produk->harga, 0, ',', '.'); ?></p>
+</div>
+
 
 <form action="<?php echo base_url('produk/lakukanPesanan'); ?>" method="post" class="mt-4">
     <input type="hidden" name="pelanggan_id" value="<?php echo session()->get('pelanggan_id'); ?>">
