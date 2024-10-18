@@ -8,7 +8,7 @@ class Produk extends BaseController {
     public function __construct() {
         // Memuat model
         $this->produkModel = new Produk_model();
-        $this->db = \Config\Database::connect();
+        
     }
 
     public function index() {
@@ -21,6 +21,15 @@ class Produk extends BaseController {
         return view('daftar_produk', $data);
     }
 
+    public function cari() {
+        $keyword = $this->request->getGet('keyword');
+        $data['produk'] = $this->produkModel->cariProduk($keyword);
+        
+        return view('daftar_produk', $data);
+    }
+    
+
+    
     public function detail($id) {
         // Mengambil produk berdasarkan ID
         $produk = $this->produkModel->ambilProdukBerdasarkanId($id);
@@ -48,8 +57,8 @@ class Produk extends BaseController {
         $jumlah = $this->request->getPost('jumlah');
 
         // Memuat model dan membuat pesanan
-        $this->produkModel->buatPesanan($pelanggan_id, $produk_id, $jumlah);
-
+        $this->produkModel->lakukanPesanan($pelanggan_id, $produk_id, $jumlah);
+        session()->setFlashdata('pesan', 'Pesanan berhasil dilakukan!');
         // Redirect ke halaman produk
         return redirect()->to('/produk/index');
     }

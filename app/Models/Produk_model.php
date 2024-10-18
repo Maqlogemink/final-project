@@ -10,6 +10,13 @@ class Produk_model extends Model
     return $query->getResult();
 }
 
+public function cariProduk($keyword) {
+    return $this->db->table('produk')
+        ->like('nama', $keyword)
+        ->get()
+        ->getResult();
+}
+
 
 public function ambilProdukBerdasarkanId($id)
 {

@@ -4,9 +4,19 @@ namespace Config;
 
 use CodeIgniter\Router\RouteCollection;
 
+// Route untuk menampilkan form pendaftaran
+$routes->get('/', 'Pelanggan::daftar');
+
+// Route untuk memproses pendaftaran pelanggan
+$routes->post('pelanggan/simpan', 'Pelanggan::simpan');
 
 // Default route to show all products
-$routes->get('/', 'Produk::index'); // Rute ini harus ada
+$routes->get('produk/index', 'Produk::index'); // Rute ini harus ada
+
+
+
+// Route untuk pencarian produk
+$routes->get('produk/cari', 'Produk::cari');
 
 // Route untuk melihat detail produk
 $routes->get('produk/detail/(:num)', 'Produk::detail/$1');
