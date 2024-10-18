@@ -11,13 +11,11 @@ class Pelanggan extends BaseController
         $this->pelangganModel = new Pelanggan_model();
     }
 
-    // Menampilkan form pendaftaran
     public function daftar()
     {
         return view('form_pendaftaran');
     }
 
-    // Menyimpan data pelanggan
     public function simpan()
     {
         // Validasi input
@@ -31,16 +29,13 @@ class Pelanggan extends BaseController
             return redirect()->back()->withInput()->with('errors', $validation->getErrors());
         }
 
-        // Ambil data dari form
         $data = [
             'nama'   => $this->request->getPost('nama'),
             'alamat' => $this->request->getPost('alamat'),
         ];
 
-        // Simpan data ke database
         $this->pelangganModel->simpanPelanggan($data);
 
-        // Set session pelanggan_id
         $pelanggan = $this->pelangganModel->ambilPelangganTerbaru();
         session()->set('pelanggan_id', $pelanggan['id']);
 
