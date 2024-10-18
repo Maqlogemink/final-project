@@ -23,15 +23,13 @@ public function ambilProdukBerdasarkanId($id)
     $builder = $this->db->table('produk');
     $builder->where('id', $id);
     $query = $builder->get();
-    return $query->getRow();  // getRow() mengembalikan satu baris data sebagai objek
+    return $query->getRow();
 }
 
 public function lakukanPesanan($pelanggan_id, $produk_id, $jumlah)
 {
-    // Mengambil data produk berdasarkan id
     $produk = $this->ambilProdukBerdasarkanId($produk_id);
 
-    // Kalkulasi total harga berdasarkan harga produk dan jumlah
     $total_harga = $produk->harga * $jumlah;
 
     // Menyimpan data pesanan
